@@ -1,0 +1,14 @@
+[Unit]
+Description=Asterisk PBX
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/sbin/asterisk -g -f -p
+ExecReload=/usr/sbin/asterisk -rx 'core reload'
+Restart=always
+RestartSec=4
+
+[Install]
+WantedBy=multi-user.target
