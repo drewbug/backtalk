@@ -1,0 +1,3 @@
+config BR2_PACKAGE_USBIP
+	bool "usbip"
+	select BR2_PACKAGE_LIBSYSFS
