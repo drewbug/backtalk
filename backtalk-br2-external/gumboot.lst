@@ -1,0 +1,18 @@
+color light-blue/white white/blue white/light-blue green/white
+
+timeout 5
+
+default 0
+
+title wii-linux-ngx
+	root (sd0,0)
+	kernel /zImage
+
+title Browse
+	browse
+
+title Reboot
+	reboot
+
+title Poweroff
+	poweroff
