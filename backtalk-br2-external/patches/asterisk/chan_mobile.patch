@@ -9,3 +9,6 @@
  	<support_level>extended</support_level>
   ***/
  
+@@ -81 +81 @@
+-#define DEVICE_FRAME_SIZE 48
++#define DEVICE_FRAME_SIZE 60
