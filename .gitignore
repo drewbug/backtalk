@@ -2,3 +2,5 @@ buildroot-2021.02.1.tar.gz
 buildroot-2021.02.1/
 
 dl/
+
+wg0.conf
