@@ -1,9 +1,8 @@
 [Unit]
 Description=Asterisk PBX
-Wants=network-online.target
-After=network-online.target
 
 [Service]
+ExecStartPre=/usr/libexec/asterisk-bluetooth.rb
 Type=notify
 ExecStart=/usr/sbin/asterisk -g -f -p
 ExecReload=/usr/sbin/asterisk -rx 'core reload'
