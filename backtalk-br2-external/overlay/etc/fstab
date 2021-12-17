@@ -1,0 +1,2 @@
+/dev/disk/by-partuuid/1337beef-01       /boot           vfat    defaults          0       2
+/dev/disk/by-partuuid/1337beef-02       /               ext4    defaults,noatime  0       1
