@@ -1,2 +1,3 @@
 PermitRootLogin yes
 PermitEmptyPasswords yes
+X11Forwarding yes
