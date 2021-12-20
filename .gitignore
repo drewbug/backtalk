@@ -4,3 +4,4 @@ buildroot-2021.02.1/
 dl/
 
 wg0.conf
+wpa_supplicant.conf
