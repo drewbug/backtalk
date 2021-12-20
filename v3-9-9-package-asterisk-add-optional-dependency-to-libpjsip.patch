@@ -1,0 +1,123 @@
+From patchwork Sun Oct 14 09:02:01 2018
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-Patchwork-Submitter: Bernd Kuhls <bernd.kuhls@t-online.de>
+X-Patchwork-Id: 983674
+Return-Path: <buildroot-bounces@busybox.net>
+X-Original-To: incoming-buildroot@patchwork.ozlabs.org
+Delivered-To: patchwork-incoming-buildroot@bilbo.ozlabs.org
+Authentication-Results: ozlabs.org;
+	spf=pass (mailfrom) smtp.mailfrom=busybox.net
+	(client-ip=140.211.166.138; helo=whitealder.osuosl.org;
+	envelope-from=buildroot-bounces@busybox.net;
+	receiver=<UNKNOWN>)
+Authentication-Results: ozlabs.org;
+	dmarc=none (p=none dis=none) header.from=t-online.de
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
+	bits)) (No client certificate requested)
+	by ozlabs.org (Postfix) with ESMTPS id 42XwZF0r8Xz9s3T
+	for <incoming-buildroot@patchwork.ozlabs.org>;
+	Sun, 14 Oct 2018 20:02:28 +1100 (AEDT)
+Received: from localhost (localhost [127.0.0.1])
+	by whitealder.osuosl.org (Postfix) with ESMTP id A564F87B21;
+	Sun, 14 Oct 2018 09:02:25 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from whitealder.osuosl.org ([127.0.0.1])
+	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id vJ+CMwpPj8vO; Sun, 14 Oct 2018 09:02:24 +0000 (UTC)
+Received: from ash.osuosl.org (ash.osuosl.org [140.211.166.34])
+	by whitealder.osuosl.org (Postfix) with ESMTP id CE08387A48;
+	Sun, 14 Oct 2018 09:02:24 +0000 (UTC)
+X-Original-To: buildroot@lists.busybox.net
+Delivered-To: buildroot@osuosl.org
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by ash.osuosl.org (Postfix) with ESMTP id 875861BF41B
+	for <buildroot@lists.busybox.net>;
+	Sun, 14 Oct 2018 09:02:19 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 8259486ACA
+	for <buildroot@lists.busybox.net>;
+	Sun, 14 Oct 2018 09:02:19 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from fraxinus.osuosl.org ([127.0.0.1])
+	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 1vZABv-b1hlR for <buildroot@lists.busybox.net>;
+	Sun, 14 Oct 2018 09:02:17 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mailout09.t-online.de (mailout09.t-online.de [194.25.134.84])
+	by fraxinus.osuosl.org (Postfix) with ESMTPS id 3A07586A1D
+	for <buildroot@buildroot.org>; Sun, 14 Oct 2018 09:02:17 +0000 (UTC)
+Received: from fwd36.aul.t-online.de (fwd36.aul.t-online.de [172.20.26.137])
+	by mailout09.t-online.de (Postfix) with SMTP id 7A8184272D7D;
+	Sun, 14 Oct 2018 11:02:15 +0200 (CEST)
+Received: from fli4l.lan.fli4l
+	(V+iHYcZpwhLpVZzEOD4KA9kUA-mj2oqWoTfbZiPzqdb2exW0TW-7mYbd81NvQwrZx0@[91.58.10.166])
+	by fwd36.t-online.de with (TLSv1:ECDHE-RSA-AES256-SHA encrypted)
+	esmtp id 1gBcHr-0TfM8m0; Sun, 14 Oct 2018 11:02:11 +0200
+Received: from mahler.lan.fli4l ([192.168.1.1]:51892 helo=kuhls.lan.fli4l)
+	by fli4l.lan.fli4l with esmtp (Exim 4.91)
+	(envelope-from <bernd.kuhls@t-online.de>)
+	id 1gBcHq-00011n-0N; Sun, 14 Oct 2018 11:02:10 +0200
+From: Bernd Kuhls <bernd.kuhls@t-online.de>
+To: buildroot@buildroot.org
+Date: Sun, 14 Oct 2018 11:02:01 +0200
+Message-Id: <20181014090202.31122-9-bernd.kuhls@t-online.de>
+X-Mailer: git-send-email 2.19.1
+In-Reply-To: <20181014090202.31122-1-bernd.kuhls@t-online.de>
+References: <20181014090202.31122-1-bernd.kuhls@t-online.de>
+MIME-Version: 1.0
+X-ID: V+iHYcZpwhLpVZzEOD4KA9kUA-mj2oqWoTfbZiPzqdb2exW0TW-7mYbd81NvQwrZx0
+X-TOI-MSGID: a70d5e17-8a03-4f97-80a9-a6e4c49ba414
+Subject: [Buildroot] [PATCH v3 9/9] package/asterisk: add optional
+	dependency to libpjsip
+X-BeenThere: buildroot@busybox.net
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Discussion and development of buildroot <buildroot.busybox.net>
+List-Unsubscribe: <http://lists.busybox.net/mailman/options/buildroot>,
+	<mailto:buildroot-request@busybox.net?subject=unsubscribe>
+List-Archive: <http://lists.busybox.net/pipermail/buildroot/>
+List-Post: <mailto:buildroot@busybox.net>
+List-Help: <mailto:buildroot-request@busybox.net?subject=help>
+List-Subscribe: <http://lists.busybox.net/mailman/listinfo/buildroot>,
+	<mailto:buildroot-request@busybox.net?subject=subscribe>
+Cc: Luca Ceresoli <luca@lucaceresoli.net>,
+	"Yann E . MORIN" <yann.morin.1998@free.fr>
+Errors-To: buildroot-bounces@busybox.net
+Sender: "buildroot" <buildroot-bounces@busybox.net>
+
+Signed-off-by: Bernd Kuhls <bernd.kuhls@t-online.de>
+---
+v3: initial revision
+
+ package/asterisk/asterisk.mk | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/package/asterisk/asterisk.mk b/package/asterisk/asterisk.mk
+index 8a46438f92..cb6dbf86d9 100644
+--- a/package/asterisk/asterisk.mk
++++ b/package/asterisk/asterisk.mk
+@@ -76,7 +76,6 @@ ASTERISK_CONF_OPTS = \
+ 	--without-osptk \
+ 	--without-oss \
+ 	--without-postgres \
+-	--without-pjproject \
+ 	--without-pjproject-bundled \
+ 	--without-popt \
+ 	--without-resample \
+@@ -180,6 +179,13 @@ else
+ ASTERISK_CONF_OPTS += --without-ogg
+ endif
+ 
++ifeq ($(BR2_PACKAGE_LIBPJSIP),y)
++ASTERISK_DEPENDENCIES += libpjsip
++ASTERISK_CONF_OPTS += --with-pjproject
++else
++ASTERISK_CONF_OPTS += --without-pjproject
++endif
++
+ ifeq ($(BR2_PACKAGE_OPUS),y)
+ ASTERISK_DEPENDENCIES += opus
+ ASTERISK_CONF_OPTS += --with-opus
