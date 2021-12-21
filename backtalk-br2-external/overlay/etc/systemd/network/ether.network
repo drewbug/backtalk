@@ -1,5 +1,8 @@
 [Match]
 Type=ether
 
+[Link]
+MTUBytes=1360
+
 [Network]
 DHCP=ipv4
