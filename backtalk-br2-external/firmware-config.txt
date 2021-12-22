@@ -1,0 +1,6 @@
+start_file=start.elf
+fixup_file=fixup.dat
+
+kernel=zImage
+
+dtparam=krnbt=on
