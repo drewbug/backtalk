@@ -1,5 +1,7 @@
 [Unit]
 Description=Asterisk PBX
+Requires=bluetooth.service
+After=bluetooth.service
 
 [Service]
 ExecStartPre=/usr/libexec/asterisk-bluetooth.rb
